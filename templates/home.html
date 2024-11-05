@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        body {
+            background-color: {{ bg_color }};
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Location to Get Weather Forecast</h1>
+        <form action="/weather" method="post">
+            Location: <input type="text" name="location">
+            <input type="submit" value="Get Weather">
+        </form>
+        <button onclick="window.location.href='/history'">View Search History</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search History</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Search History</h1>
+        {% if history %}
+            {% for entry in history %}
+            <h2>Weather Forecast for {{ entry.location }} on {{ entry.date }}</h2>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Day Temperature</th>
+                    <th>Night Temperature</th>
+                    <th>Humidity</th>
+                    <th>Icon</th>
+                </tr>
+                {% for day in entry.data.forecast %}
+                <tr>
+                    <td>{{ day.date }}</td>
+                    <td>{{ day.temp_day }} °C</td>
+                    <td>{{ day.temp_night }} °C</td>
+                    <td>{{ day.humidity }}%</td>
+                    <td>
+                        <img src="static/icons/{{ day.icon }}.png" alt="Weather Icon">
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            {% endfor %}
+        {% else %}
+            <h2>No search history available.</h2>
+        {% endif %}
+        <button class="download-button" onclick="window.location.href='/download?file=search_history.json'">Download JSON</button>
+        <button onclick="window.location.href='/'">Back</button>
+    </div>
+</body>
+</html>

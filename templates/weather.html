@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        {% if error %}
+            <h2>Error: {{ error }}</h2>
+        {% else %}
+            <h2>Weather Forecast for {{ data.location }}, {{ data.country }}</h2>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Day Temperature</th>
+                    <th>Night Temperature</th>
+                    <th>Humidity</th>
+                    <th>Icon</th>
+                </tr>
+                {% for day in data.forecast %}
+                <tr>
+                    <td>{{ day.date }}</td>
+                    <td>{{ day.temp_day }} °C</td>
+                    <td>{{ day.temp_night }} °C</td>
+                    <td>{{ day.humidity }}%</td>
+                    <td>
+                        <img src="static/icons/{{ day.icon }}.png" alt="Weather Icon">
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        <button onclick="window.location.href='/'">Back</button>
+    </div>
+</body>
+</html>
